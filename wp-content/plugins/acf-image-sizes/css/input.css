@@ -1,0 +1,79 @@
+.acf-image-sizes-uploader {
+	position: relative;
+	width: 70%; display: inline-block; vertical-align: top;
+}
+
+.acf-image-sizes-uploader .has-image-sizes { display: none; float: left; position: relative; max-width: 100%; }
+.acf-image-sizes-uploader .no-image-sizes { display: block; float: left; position: relative; max-width: 100%; }
+
+.acf-image-sizes-uploader.active .has-image-sizes { display: block; }
+.acf-image-sizes-uploader.active .no-image-sizes { display: none; }
+
+
+.acf-image-sizes-uploader img {
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+	width: 100%;
+	height: auto;
+	display: block;
+	min-width: 30px;
+	min-height: 30px;
+	background: #f1f1f1;
+	margin: 0 0 0 2px;
+}
+
+.acf-image-sizes-uploader .no-image p {
+	display: block;
+	margin: 0 !important;
+}
+
+.acf-image-sizes-uploader input.button {
+	width: auto;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	
+	.acf-image-sizes-uploader img {
+		width: auto;
+		max-width: 100%;
+	}
+	
+}
+
+
+/*
+*  Hover
+*/
+
+.acf-image-sizes-uploader .hover {
+	position: absolute;
+	top: -11px;
+	right: -11px;
+	
+	-webkit-transition: opacity 0.25s 0s ease-in-out, visibility 0s linear 0.25s;
+	-moz-transition: opacity 0.25s 0s ease-in-out, visibility 0s linear 0.25s;
+	-o-transition: opacity 0.25s 0s ease-in-out, visibility 0s linear 0.25s; 	
+	transition: opacity 0.25s 0s ease-in-out, visibility 0s linear 0.25s; 
+	
+	visibility: hidden;
+	opacity: 0;
+}
+
+.acf-image-sizes-uploader .has-image-sizes:hover .hover {
+	-webkit-transition-delay:0s;
+	-moz-transition-delay:0s;
+	-o-transition-delay:0s;
+	transition-delay:0s;
+	
+	visibility: visible;
+	opacity: 1;
+}
+
+.acf-image-sizes-uploader .hover ul {
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+.acf-image-sizes-uploader .hover ul li {
+	margin: 0 0 5px 0;
+}
