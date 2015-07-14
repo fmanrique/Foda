@@ -5,6 +5,12 @@
 
 	$news = get_news(4);
 	$sliders = get_sliders();
+
+	/*echo "<pre>";
+	print_r($sliders);
+	echo "</pre>";
+
+	die;*/
 ?>
 	<!-- END BIGSKILLET -->
 	<!-- Main Content -->
@@ -32,9 +38,8 @@
 				 </div>
 				 
 				 <div id="slideshow_proper">
-					<?php foreach($sliders as $key => $slider) { ?>
-
-					<style>
+				 	<style>
+				 	<?php foreach($sliders as $key => $slider) : ?>
 						a.txt_dark_custom<?php echo $key; ?>:active {
 							color: <?php echo $slider['header_color'] == "" ? "#000000" : $slider['header_color']; ?> !important; 
 						}
@@ -46,21 +51,25 @@
 						a.txt_dark_custom<?php echo $key; ?>:hover {
 							color: <?php echo $slider['header_color_hover'] == "" ? "#00AEEF" : $slider['header_color_hover']; ?> !important;
 						}
+					<?php endforeach; ?>
 					</style>
+
+					<?php foreach($sliders as $key => $slider) : ?>
 					
-					<div class=" <?php echo ($key == 0) ? 'active' : 'noactive' ?>">
+					<div class=" <?php echo ($key == 0) ? 'active' : 'notactive' ?>">
+
 						<a href="<?php echo $slider['url']; ?>">
 							<div class="home_slide" style="background-image: url(<?php echo $slider['image']['url']; ?>);"></div>
 						</a>
 						<!-- CATEGORIES LIGHT/DARK IF STATEMENT-->
-						<p class="txt_dark hidden-xs" style="padding-top: 34px"><a href="<?php echo $slider['url']; ?>" class="txt_dark2 txt_dark_custom<?php echo $key; ?>"><?php echo $slider['header_title']; ?> <span class="ss-link txt_dark_custom<?php echo $key; ?>"><?php echo $slider['header_subtitle']; ?></span></a></p>
+						<p class="txt_dark hidden-xs slider_title" style="display: none; z-index: 10000; top: 30px; padding-top: 0px; padding-left: 2px"><a href="<?php echo $slider['url']; ?>" class="txt_dark2 txt_dark_custom<?php echo $key; ?>"><?php echo $slider['header_title']; ?> <span class="ss-link txt_dark_custom<?php echo $key; ?>"><?php echo $slider['header_subtitle']; ?></span></a></p>
 						<div class="visible-xs">
-							<a href="<?php echo $slider['url']; ?>" class="txt_dark2" style="font-size: 18px; top: 10px; position: absolute; padding-left: 10px"><?php echo $slider['header_title']; ?> <span class="ss-link" style="font-size: 10px"><?php echo $slider['header_subtitle']; ?></span></a>
+							<a href="<?php echo $slider['url']; ?>" class="txt_dark2" style="z-index: 1000; font-size: 18px; padding-top: 42px; position: absolute; padding-left: 12px"><?php echo $slider['header_title']; ?> <span class="ss-link" style="font-size: 10px"><?php echo $slider['header_subtitle']; ?></span></a>
 						</div>
 						
 					</div>
 
-					<?php } ?>
+					<?php endforeach; ?>
 					
 				</div>
 
@@ -70,6 +79,13 @@
 	</div>
 
 	<?php if (count($news) > 0) : ?>
+	<?php 
+		/*echo "<pre>";
+		print_r($news);
+		echo "</pre>";
+		die;*/
+	?>
+
 	<div class="container hidden-xs" style="margin: 0px; padding: 0; width: 100%">
 		<div style="margin: 0px; padding: 0">
 			<div class="col-sm-2 col-xs-3" style="margin: 0px; padding: 0; width: 134px;">
@@ -78,9 +94,29 @@
 			<div class="col-sm-10 col-xs-8">
 				<div class="row" style="padding-left: 0px; padding-right: 0px; margin-right: 0px">
 					<?php foreach ($news as $key => $new) :?>
+					<?php 
+						$new_detail = '';
+						if (strlen($new['details']) > 800) { 
+							$details = explode('</p>', $new['details']);
+
+							for($i = 0; $i<=count($details); $i++) {
+								if (strlen($new_detail) + strlen($details[$i]) <= 800) {
+									$new_detail = $new_detail.$details[$i].'</p>';
+								} else {
+									$i = count($details) + 1;
+								}
+							}
+
+							if (strlen($new_detail) == 0) {
+								$new_detail = $new_detail.$details[0].'</p>';
+							}
+						} else {
+							$new_detail = $new['details'];
+						}
+					?>
 					<div class="col-xs-12 col-sm-6" style="padding: 0px 12px 0px 12px; width: 250px;">
 						<p class="txt_title"><?php echo $new['title']; ?></p>
-						<p class="txt_dark"><?php echo $new['details']; ?></p>
+						<p class="txt_dark"><?php echo $new_detail; ?></p>
 						<p class="txt_dark"><a href="/news">See All News Items</a></p>
 					</div>
 					<?php endforeach; ?>
@@ -119,6 +155,8 @@
 		 	$('.slideshow_relative').show();
 
 		 	$('.btn-foda').addClass("active");
+
+		 	$('.slider_title').delay( 500 ).fadeIn( 400 );
 		});
 
 		$( window ).resize(function() {

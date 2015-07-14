@@ -4,7 +4,7 @@
 ?>
 <div class="clearfooter hidden-xs"></div>
 </div>
-	<div class="visible-xs" id="copyright" style="width: 100%; text-align: center; position: absolute">
+	<div class="visible-xs" id="copyright" style="width: 100%; padding-top: 10px; padding-bottom: 20px; text-align: center; position: absolute">
 		Copyright &copy; 2015 by fodastudio
 	</div>
 	<!-- FOOTER --> 
@@ -13,7 +13,7 @@
 	
 		<?php if (count($services) > 0) : ?>
 		<div class="col-sm-3 col-xs-4" style="margin: 0px; padding: 0; width: 134px;">
-			<div class="col_title"><p class="txt_title" style="padding-top: 22px;">Services</p></div>
+			<div class="col_title"><p class="txt_title" style="padding-top: 20px;">Services</p></div>
 		</div>
 		
 		<div class="container col-sm-10 col-xs-7" style="margin-left: 0px; padding: 0px; margin: 0px;">

@@ -26,11 +26,11 @@ function create_post_type_news() {
 
 function get_news($posts_per_page = -1){
 	$args = array(
-	'post_type'  => 'news',
+	'post_type'  	  => 'news',
 	'posts_per_page'  => $posts_per_page,
-	'order'           => 'ASC',
-	'orderby' 		  => 'menu_order',
-	'meta_key'        => '',
+	'order'           => 'DESC',
+	'orderby' 		  => 'meta_value',
+	'meta_key'        => 'news_date',
 	'meta_value'      => '',
 	'post_status'     => 'publish',
 	'suppress_filters' => true );

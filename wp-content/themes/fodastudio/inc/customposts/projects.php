@@ -45,13 +45,42 @@ function get_projects($posts_per_page = -1){
 		$item['title'] = $project->post_title;
 		$item['permalink'] = get_permalink($id);
 		$item['image'] = get_field('projects_preview_image',$id);
-		$item['description'] = get_field('projects_description',$id);
+		/*$item['description'] = get_field('projects_description',$id);
 		$item['principalservice'] = get_field('projects_principal_service',$id);
 		$item['brief'] = get_field('projects_brief',$id);
 		$item['services'] = get_field('projects_services',$id);
 		$item['team'] = get_field('projects_team',$id);
-		$item['gallery'] = get_field('projects_gallery',$id);
+		$item['gallery'] = get_field('projects_gallery',$id);*/
 
+		
+		$items[] = $item;
+	}
+
+
+	return $items;
+}
+
+function get_projects_list($posts_per_page = -1){
+	$args = array(
+	'post_type'  => 'projects',
+	'posts_per_page'  => $posts_per_page,
+	'order'           => 'ASC',
+	'orderby' 		  => 'menu_order',
+	'meta_key'        => '',
+	'meta_value'      => '',
+	'post_status'     => 'publish',
+	'suppress_filters' => true );
+
+	$data = get_posts($args);
+	$items = array();
+
+	foreach($data as $project) {
+		$id = $project->ID;
+
+		$item['id'] = $id;
+		$item['title'] = $project->post_title;
+		$item['permalink'] = get_permalink($id);
+		$item['image'] = get_field('projects_preview_image',$id);
 		
 		$items[] = $item;
 	}

@@ -69,7 +69,7 @@ function slideSwitchForward() {
 			if ( $active.length == 0 ) $active = $('#slideshow_proper div:last');
 		
 			// use this to pull the images in the order they appear in the markup
-			var $next =  $active.next().length ? $active.next()
+			var $next =  $active.next('div').length ? $active.next()
 				: $('#slideshow_proper div:first');
 		
 			// uncomment the 3 lines below to pull the images in random order

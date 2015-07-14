@@ -9,46 +9,53 @@
 
 ?>
 	<!-- Main Content -->
-
-	<div class="container" style="margin: 0px; padding: 0; padding-top: 60px">
-		<div class="row" style="margin: 0px; padding: 0">
-			<div style="float: left; margin: 0px; padding: 0">
+<div id="maincontent" style="margin-top: 36px">
+	<div class="hidden-lg hidden-md hidden-sm" style="margin-top: 10px; height:0px; width:100%"></div>
+	<div class="container" style="margin: 0px; padding: 0; width: 100%">
+		<div style="margin: 0px; padding: 0; float: left">
+			<div class="col-sm-2 col-xs-4" style="margin: 0px; padding: 0px; width: 134px;">
 				<div class="col_title"><p class="txt_title"><?php echo $project['principalservice']->post_title; ?></p></div>
 			</div>
-			<div class="col-lg-10 col-xs-7 col-sm-10" style="margin: 0px; padding: 0">
-				<div class="col-xs-12 col-lg-3 col-sm-6" style="padding: 0px 10px 0px 10px;">
-					<p class="txt_title"><?php echo $project['title']; ?></p>
-					<?php 
-						$descriptions = explode("</p>", $project['description']);
-						$description_more = '';
-						
-						if ( count($descriptions) > 0 ) {
-							foreach($descriptions as $key => $description) {
-								if ($key > 0) {
-									$description_more .= $description . '</p>';
+		</div>
+		<div class="col-sm-10 col-xs-7">
+			<div class="row" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; margin-right: 0px; margin-top: 0px">
+				<div class="col-xs-12 col-sm-6 col-container">
+					<div class="col-xs-12 col-B">
+						<p class="txt_title"><?php echo $project['title']; ?></p>
+						<?php 
+							$descriptions = explode("</p>", $project['description']);
+							$description_more = '';
+							
+							if ( count($descriptions) > 0 ) {
+								foreach($descriptions as $key => $description) {
+									if ($key > 0) {
+										$description_more .= $description . '</p>';
+									}
 								}
+
+								echo $descriptions[0] . '</p><div id="col_content_extratxt" style="display:none;">' . $description_more . '</p></div>';
+
 							}
-
-							echo $descriptions[0] . '</p><div id="col_content_extratxt" style="display:none;">' . $description_more . '</p></div>';
-
-						}
-					?>
-					<p id="col_content_extratxt_expand" class="txt_dark"><a href="#">Read More</a></p>
-					<p id="col_content_extratxt_collapse" style="display:none;"><a href="#">Close</a></p>
+						?>
+						<p id="col_content_extratxt_expand" class="txt_dark"><a href="#">Read More</a></p>
+						<p id="col_content_extratxt_collapse" style="display:none;"><a href="#">Close</a></p>
+					</div>
+				
+					<div class="col-xs-12 col-B">
+						<p class="txt_title txt_dark">Brief</p>
+						<?php echo $project['brief']; ?>
+					</div>
 				</div>
-
-				<div class="col-xs-12 col-lg-3 col-sm-6" style="padding: 0px 10px 0px 10px;">
-					<p class="txt_title txt_dark">Brief</p>
-					<?php echo $project['brief']; ?>
-				</div>
-
-				<div class="col-xs-12 col-lg-3 col-sm-6" style="padding: 0px 10px 0px 10px;">
-					<p class="txt_title txt_dark">Services</p>
-					<?php echo $project['services']; ?>
-				</div>
-				<div class="col-xs-12 col-lg-3 col-sm-6" style="padding: 0px 10px 0px 10px;">
-					<p class="txt_title txt_dark">Team</p>
-					<?php echo $project['team']; ?>
+				<div class="col-sm-6 col-container-C">
+					<div class="col-xs-12 col-B">
+						<p class="txt_title txt_dark">Services</p>
+						<?php echo $project['services']; ?>
+					</div>
+				
+					<div class="col-xs-12" style="padding: 0px 12px 0px 12px; width: 200px">
+						<p class="txt_title txt_dark">Team</p>
+						<?php echo $project['team']; ?>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -64,6 +71,7 @@
 	
 		<?php } ?>
 	</div>
+</div>
 
 	<script type="text/javascript">
 		$(document).ready(function () {
